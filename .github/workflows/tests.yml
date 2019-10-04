@@ -23,17 +23,20 @@ jobs:
       uses: actions/setup-ruby@v1
       with:
         ruby-version: 2.6.x
+    - name: add PostgreSQL dependencies
+      run: |
+        sudo apt-get update
+        sudo apt-get -yqq install libpq-dev
     - name: Rubocop linting
       uses: andrewmcodes/rubocop-linter-action@v0.1.2
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-    - name: Build and test with Rake
+    - name: Build and test Rails
       env:
         PGHOST: 127.0.0.1
         PGUSER: postgres
         RAILS_ENV: test
       run: |
-        sudo apt-get -yqq install libpq-dev
         gem install bundler
         bundle install --jobs 4 --retry 3
         yarn install --check-files

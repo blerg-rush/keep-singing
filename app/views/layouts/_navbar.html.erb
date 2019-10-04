@@ -1,0 +1,16 @@
+<div class="navbar navbar-expand-md sticky-top navbar-dark bg-dark">
+  <%= link_to root_path, class: "navbar-brand" do %>
+    <i class="fas fa-music"></i> "Keep Singing!"<i class="fas fa-music"></i>
+  <% end %>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggler"
+          aria-controls="navbarToggler" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarToggler">
+    <form class="form-inline ml-auto">
+      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+      <button class="btn btn-outline-info my-2 my-sm-0" type="submit">Search</button>
+    </form>
+  </div>
+</div>

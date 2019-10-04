@@ -1,1 +1,19 @@
 @import './bootstrap_custom.scss';
+
+$theme-colors: (
+  "bg": rgb(245,245,245),
+  "bg-dark": rgb(60, 179, 143),
+  "text-light": rgb(245,245,245),
+  "text-dark": #343a40,
+  "link-dark": rgb(78,161,136),
+  "hover-dark": rgb(61,127,107),
+  "hover-light": rgb(255,255,255)
+);
+
+body {
+  background-color: map_get($theme-colors, 'bg');
+  min-height: 100vh;
+  position: relative;
+  margin: 0;
+  padding-bottom: 40px;
+}

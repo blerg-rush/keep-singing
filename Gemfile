@@ -59,7 +59,6 @@ end
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 
 # APIs
-gem 'yourub'
 gem 'yt', '~> 0.32.0'
 
 # Frontend

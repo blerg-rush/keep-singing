@@ -11,8 +11,8 @@ class VideosControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
-  test 'should get create' do
-    get videos_create_url
+  test 'should post create' do
+    post videos_create_url
     assert_response :success
   end
 end

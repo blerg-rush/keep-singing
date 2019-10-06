@@ -4,4 +4,11 @@
       <iframe class="video" src="http://www.youtube.com/embed/VOIe5Ksk6xQ" frameborder="0" allowfullscreen></iframe>
     </div>
   </div>
+  <div class="col col-md-3">
+    <% @results.each do |result| %>
+      <p>
+        <%= image_tag result.thumbnail_url :medium %>
+      </p>
+    <% end %>
+  </div>
 </div>

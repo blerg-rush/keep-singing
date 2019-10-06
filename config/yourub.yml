@@ -1,0 +1,16 @@
+yourub_defaults: &yourub_defaults
+  developer_key: <%= ENV['YT_API_KEY'] %>
+  youtube_api_service_name: 'youtube'
+  youtube_api_version: 'v3'
+  application_name: "yourub"
+  application_version: "0.1"
+  log_level: WARN
+
+development:
+  <<: *yourub_defaults
+
+production:
+  <<: *yourub_defaults
+
+test:
+  <<: *yourub_defaults

@@ -1,6 +1,6 @@
 class Video < ApplicationRecord
   validates :link, presence: true
-  before_save :get_details
+  before_save :add_details
 
   private
 

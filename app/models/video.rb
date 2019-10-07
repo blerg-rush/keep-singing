@@ -8,6 +8,8 @@ class Video < ApplicationRecord
       video = Yt::Video.new url: link
       self.uid = video.id
       self.title = video.title.trim
+      self.description = video.description
+      self.channel_id = video.channel_id
     rescue Yt::Errors::NoItems
       resource.title = ''
     end

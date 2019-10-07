@@ -1,5 +1,7 @@
 <div class="container">
-  <h1>Add Video</h1>
+  <p>
+    Provide a YouTube link for the song to be added:
+  </p>
   <%= form_with model: @video do |f| %>
     <%= f.text_field :link, placeholder: "YouTube Link", class: 'form-control', required: true %>
     <%= f.submit class: 'btn btn-info' %>

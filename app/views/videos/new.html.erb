@@ -1,2 +1,7 @@
-<h1>Videos#new</h1>
-<p>Find me in app/views/videos/new.html.erb</p>
+<div class="container">
+  <h1>Add Video</h1>
+  <%= form_with model: @video do |f| %>
+    <%= f.text_field :link, class: 'form-control', required: true %>
+    <%= f.submit class: 'btn btn-info' %>
+  <% end %>
+</div>

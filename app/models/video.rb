@@ -15,7 +15,7 @@ class Video < ApplicationRecord
     def trim(string)
       string.strip_karaoke_version
             .strip_karaoke
-            .strip
+            .squish
     end
 
     def strip_karaoke_version(string)

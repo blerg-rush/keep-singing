@@ -5,13 +5,13 @@ class Video < ApplicationRecord
   private
 
     def add_details
-      video = Yt::Video.new url: link
-      self.uid = video.id
+      video = Yt::Video.new uid: uid
+      self.link = "https://www.youtube.com/watch?v=#{uid}"
       self.title = video.title.trim
       self.description = video.description
       self.channel_id = video.channel_id
     rescue Yt::Errors::NoItems
-      resource.title = ''
+      self.title = ''
     end
 
     def trim(string)

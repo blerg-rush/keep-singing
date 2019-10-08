@@ -4,11 +4,10 @@ class Video < ApplicationRecord
 
   # Passes new video details from API collection object
   def fill_details(yt_video)
-    self.title = trim(yt_video.title)
-    self.link = "https://www.youtube.com/watch?v=#{yt_video.id}"
-    self.description = yt_video.description
-    self.channel_uid = yt_video.channel_id
-    self.channel_id = find_channel
+    self.title ||= trim(yt_video.title)
+    self.link ||= "https://www.youtube.com/watch?v=#{yt_video.id}"
+    self.description ||= yt_video.description
+    self.channel_uid ||= yt_video.channel_id
   end
 
   private
@@ -23,10 +22,5 @@ class Video < ApplicationRecord
       fill_details(yt_video)
     rescue Yt::Errors::NoItems
       self.title = ''
-    end
-
-    def find_channel
-      channel = Channel.find_by(uid: channel_uid)
-      channel ? channel.id : nil
     end
 end

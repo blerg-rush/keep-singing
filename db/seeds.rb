@@ -5,12 +5,15 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-Video.skip_callback(:save, :before, :add_details)
+channel = Channel.new(uid: 'UCCzFM7I3PHCrj4GEwpI4jgw',
+                      title: 'Scott J')
 
-Video.create(title: 'Most Beautiful Girl in the Room',
-             link: 'https://www.youtube.com/watch?v=QKnXM5G8lRE',
-             uid: 'QKnXM5G8lRE',
-             description: 'Flight of the Conchords   Most Beautiful Girl in the Room Karaoke',
-             channel_id: 'UCCzFM7I3PHCrj4GEwpI4jgw')
+channel.save(validate: false)
 
-Video.set_callback(:save, :before, :add_details)
+video = Video.new(title: 'Most Beautiful Girl in the Room',
+                  link: 'https://www.youtube.com/watch?v=QKnXM5G8lRE',
+                  uid: 'QKnXM5G8lRE',
+                  description: 'Flight of the Conchords   Most Beautiful Girl in the Room Karaoke',
+                  channel_id: 'UCCzFM7I3PHCrj4GEwpI4jgw')
+
+video.save(validate: false)

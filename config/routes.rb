@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  get 'channels/index'
+  get 'channels/create'
+  get 'channels/destroy'
   get 'search/new'
   get 'search/show'
   get 'home/index'

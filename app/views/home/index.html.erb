@@ -5,10 +5,10 @@
     </div>
   </div>
   <div class="col col-md-3">
-    <div class="row">
+    <div class="row mb-3">
       <%= link_to "Add Video", videos_new_path, class: "btn btn-sm btn-outline-success" %>
     </div>
-    <div class="row">
+    <div class="row thumbnail-scroll justify-content-center">
       <% if @videos.any? %>
         <% @videos.each do |video| %>
           <div class="yt_video thumbnail">

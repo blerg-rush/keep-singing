@@ -35,3 +35,8 @@ p, h1, h2, h3, h4, h5 {
   width: 100%;
   height: 100%;
 }
+
+.thumbnail-scroll {
+  height: 80vh;
+  overflow-y: scroll;
+}

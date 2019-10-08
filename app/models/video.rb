@@ -2,6 +2,8 @@ class Video < ApplicationRecord
   validates :uid, presence: true, uniqueness: true
   belongs_to :channel
 
+  ## TODO: Reactivate single-video creation
+
   # Passes new video details from API collection object
   def fill_details(yt_video)
     self.title ||= trim(yt_video.title)

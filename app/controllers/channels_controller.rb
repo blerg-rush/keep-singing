@@ -4,7 +4,7 @@ class ChannelsController < ApplicationController
   end
 
   def create
-    @channel = Channel.find_or_create_by(channel_params)
+    @channel = Channel.find_or_initialize_by(channel_params)
     if @channel.save
       flash[:success] = 'Channel imported!'
       redirect_to root_path

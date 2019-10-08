@@ -1,9 +1,18 @@
-<div class="container">
+<div class='container mb-4'>
   <p>
     Provide a YouTube Video ID for the song to be added (e.g. 'SpFcw_JqthM'):
   </p>
   <%= form_with model: @video do |f| %>
-    <%= f.text_field :uid, placeholder: "Video ID", class: 'form-control', required: true %>
-    <%= f.submit class: 'btn btn-info' %>
+    <%= f.text_field :uid, placeholder: 'Video ID', class: 'form-control', required: true %>
+    <%= f.submit 'Import Video', class: 'btn btn-info' %>
+  <% end %>
+</div>
+<div class='container'>
+  <p>
+    ...or, import an entire YouTube Channel's videos by Channel ID (e.g. 'UCwXOPyNfdUIhsM4NykfhPFw'):
+  </p>
+  <%= form_with model: @channel do |f| %>
+    <%= f.text_field :uid, placeholder: 'Channel ID', class: 'form-control', required: true %>
+    <%= f.submit 'Import Channel', class: 'btn btn-info' %>
   <% end %>
 </div>

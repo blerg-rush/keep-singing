@@ -5,6 +5,7 @@ class VideosController < ApplicationController
 
   def new
     @video = Video.new
+    @channel = Channel.new
   end
 
   def create

@@ -10,10 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_07_214635) do
+ActiveRecord::Schema.define(version: 2019_10_08_021834) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "channels", force: :cascade do |t|
+    t.string "title"
+    t.string "channel_uid"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -34,7 +41,9 @@ ActiveRecord::Schema.define(version: 2019_10_07_214635) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.text "description"
-    t.string "channel_id"
+    t.string "channel_uid"
+    t.bigint "channel_id"
+    t.index ["channel_id"], name: "index_videos_on_channel_id"
     t.index ["uid"], name: "index_videos_on_uid"
   end
 

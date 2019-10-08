@@ -14,7 +14,7 @@ class VideosController < ApplicationController
       flash[:success] = 'Video added!'
       redirect_to root_path
     else
-      flash.now[:danger] = 'Video url error'
+      flash.now[:danger] = 'Video ID error'
       render :new
     end
   end

@@ -17,11 +17,4 @@ class Video < ApplicationRecord
     rescue Yt::Errors::NoItems
       self.title = ''
     end
-
-    def trim(title)
-      # existing
-      title.to_s.gsub(/(K|k)araoke (V|v)ersion/, '')
-           .gsub(/(K|k)araoke/, '')
-           .squish
-    end
 end

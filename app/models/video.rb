@@ -10,17 +10,11 @@ class Video < ApplicationRecord
     self.channel_uid ||= yt_video.channel_id
   end
 
-  private
-
-    before_validation(if: -> { uid.present? && changes['uid'].present? }) do
-      query_details
-    end
-
-    # Grabs new video details from Yt API
-    def query_details
-      yt_video = Yt::Video.new id: uid
-      fill_details(yt_video)
-    rescue Yt::Errors::NoItems
-      self.title = ''
-    end
+  # Grabs new video details from Yt API
+  def query_details
+    yt_video = Yt::Video.new id: uid
+    fill_details(yt_video)
+  rescue Yt::Errors::NoItems
+    self.title = ''
+  end
 end

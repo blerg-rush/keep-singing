@@ -1,20 +1,32 @@
 class Video < ApplicationRecord
-  validates :uid, presence: true
+  validates :uid, presence: true, uniqueness: true
   belongs_to :channel
+
+  # Passes new video details from API collection object
+  def fill_details(yt_video)
+    self.title = trim(yt_video.title)
+    self.link = "https://www.youtube.com/watch?v=#{yt_video.id}"
+    self.description = yt_video.description
+    self.channel_uid = yt_video.channel_id
+    self.channel_id = find_channel
+  end
 
   private
 
     before_validation(if: -> { uid.present? && changes['uid'].present? }) do
-      add_details
+      query_details
     end
 
-    def add_details
-      video = Yt::Video.new id: uid
-      self.link = "https://www.youtube.com/watch?v=#{uid}"
-      self.title = trim(video.title)
-      self.description = video.description
-      self.channel_id = video.channel_id
+    # Grabs new video details from Yt API
+    def query_details
+      yt_video = Yt::Video.new id: uid
+      fill_details(yt_video)
     rescue Yt::Errors::NoItems
       self.title = ''
+    end
+
+    def find_channel
+      channel = Channel.find_by(uid: channel_uid)
+      channel ? channel.id : nil
     end
 end

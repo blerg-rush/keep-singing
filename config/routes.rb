@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   get 'home/index'
   get 'videos/new'
   get 'videos/index'
+  get 'videos/show'
   post 'videos/create'
   resources :videos
   resources :channels

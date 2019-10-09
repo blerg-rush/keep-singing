@@ -20,21 +20,11 @@ class Channel < ApplicationRecord
 
   private
 
-    def start_scrape
+    def scrape
       channel = Yt::Channel.new id: uid
-      videos = channel.videos.first(50)
-      videos.each do |yt_video|
-        video = videos.find { |v| v.uid == yt_video.id }
-        video ||= videos.build(uid: yt_video.id)
-        video.fill_details(yt_video)
+      unless page_token.nil?
+        channel.instance_variable_set(:@page_token, page_token)
       end
-      save
-      self.page_token = channel.instance_variable_get(:@page_token)
-    end
-
-    def resume_scrape
-      channel = Yt::Channel.new id: uid
-      channel.instance_variable_set(:@page_token, page_token)
       videos = channel.videos.first(50)
       videos.each do |yt_video|
         video = videos.find { |v| v.uid == yt_video.id }

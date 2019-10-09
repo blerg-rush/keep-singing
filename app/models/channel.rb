@@ -35,6 +35,7 @@ class Channel < ApplicationRecord
     def resume_scrape
       channel = Yt::Channel.new id: uid
       channel.instance_variable_set(:@page_token, page_token)
+      videos = channel.videos.first(50)
       videos.each do |yt_video|
         video = videos.find { |v| v.uid == yt_video.id }
         video ||= videos.build(uid: yt_video.id)

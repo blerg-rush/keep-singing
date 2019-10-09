@@ -1,2 +1,26 @@
-<h1>Videos#index</h1>
-<p>Find me in app/views/videos/index.html.erb</p>
+<div class="row">
+  <div class="col col-md-9">
+    <div class="player">
+      <iframe class="video" src="http://www.youtube.com/embed/VOIe5Ksk6xQ" frameborder="0" allowfullscreen></iframe>
+    </div>
+  </div>
+  <div class="col col-md-3">
+    <div class="row mb-3 justify-content-center">
+      <%= link_to "Add Videos", videos_new_path, class: "btn btn-sm btn-outline-success" %>
+    </div>
+    <div class="row thumbnail-scroll justify-content-center">
+      <% if @videos.any? %>
+        <% @videos.each do |video| %>
+          <div class="yt_video thumbnail">
+            <%= link_to "#" do %>
+              <%= image_tag "https://img.youtube.com/vi/#{video.uid}/mqdefault.jpg", alt: video.title %>
+            <% end %>
+            <div class="caption">
+              <h5><%= video.title %></h5>
+            </div>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+</div>

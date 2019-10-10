@@ -6,6 +6,18 @@ class Channel < ApplicationRecord
     scrape
   end
 
+  # Queries the YT API for the current channel's videos, repeating
+  # until the last page has been scraped (videos.count < 50)
+  # YouTube API quota cost: 103 for each 50 videos scraped
+  def scrape
+    yt_channel = Yt::Channel.new id: uid
+    yt_videos = yt_channel.videos
+                          .where(published_before: when_last_published)
+                          .first(50)
+    scrape_page(yt_videos)
+    scrape if yt_videos.count == 50
+  end
+
   # Scrapes all videos added to a channel since the last scrape
   # Not meant to add entire channels; will fail entirely if
   # it attempts to scrape more videos than quota allows
@@ -18,18 +30,6 @@ class Channel < ApplicationRecord
   end
 
   private
-
-    # Queries the YT API for the current channel's videos, repeating
-    # until the last page has been scraped (videos.count < 50)
-    # YouTube API quota cost: 103 for each 50 videos scraped
-    def scrape
-      yt_channel = Yt::Channel.new id: uid
-      yt_videos = yt_channel.videos
-                            .where(published_before: when_last_published)
-                            .first(50)
-      scrape_page(yt_videos)
-      scrape if yt_videos.count == 50
-    end
 
     # Builds a new video from each result in a page of yt_videos
     def scrape_page(yt_videos)

@@ -18,6 +18,20 @@ class Channel < ApplicationRecord
     save
   end
 
+  # Queries the YT API for the current channel's videos, repeating
+  # until the last page has been scraped (videos.count < 50)
+  # The last_scraped attribute will be used to update the channel
+  def scrape
+    yt_channel = Yt::Channel.new id: uid
+    yt_videos = yt_channel.videos
+                          .where(published_before: last_published)
+                          .first(50)
+    scrape_page(yt_videos)
+    self.last_scraped = Time.zone.now
+    save
+    scrape if yt_videos.count == 50
+  end
+
   private
 
     # In their current form, the below methods are _only_ for scraping
@@ -33,22 +47,18 @@ class Channel < ApplicationRecord
     #   save
     # end
 
-    def scrape
-      yt_channel = Yt::Channel.new id: uid
-      videos = yt_channel.videos
-                         .where(published_before: videos.last&.published_at)
-                         .first(50)
-      scrape_page(videos)
-      save
-
-      scrape if videos.count == 50
-    end
-
-    def scrape_page(videos)
-      videos.each do |yt_video|
+    def scrape_page(yt_videos)
+      yt_videos.each do |yt_video|
         video = videos.find { |v| v.uid == yt_video.id }
         video ||= videos.build(uid: yt_video.id)
         video.fill_details(yt_video)
       end
+    end
+
+    # Returns datetime the last scraped video was published, or the
+    # current datetime if none exist, in YouTube-accepted format
+    def last_published
+      time = videos.any? ? videos.last.published_at : Time.zone.now
+      time.strftime '%FT%T.999Z'
     end
 end

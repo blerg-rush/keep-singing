@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_08_154959) do
+ActiveRecord::Schema.define(version: 2019_10_10_025038) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -20,6 +20,7 @@ ActiveRecord::Schema.define(version: 2019_10_08_154959) do
     t.string "uid"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.datetime "last_scraped"
   end
 
   create_table "users", force: :cascade do |t|
@@ -43,6 +44,7 @@ ActiveRecord::Schema.define(version: 2019_10_08_154959) do
     t.text "description"
     t.string "channel_uid"
     t.bigint "channel_id"
+    t.datetime "published_at"
     t.index ["channel_id"], name: "index_videos_on_channel_id"
     t.index ["uid"], name: "index_videos_on_uid"
   end

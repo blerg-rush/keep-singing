@@ -4,8 +4,14 @@ class Channel < ApplicationRecord
 
   # Sends scrape task to background task
   def save_and_scrape!
+    return false if uid.blank?
+
     save
-    NewChannelScraper.perform_async(id)
+    if changes[:uid].present?
+      NewChannelScraper.perform_async(id)
+    else
+      UpdateChannelScraper.perform_async(id)
+    end
   end
 
   # Queries the YT API for the current channel's videos, repeating

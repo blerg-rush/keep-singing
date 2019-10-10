@@ -1,9 +1,9 @@
-class NewChannelScraper
+class UpdateChannelScraper
   include Sidekiq::Worker
   sidekiq_options retry: false
 
   def perform(id)
     @channel = Channel.find(id)
-    @channel.scrape
+    @channel.update
   end
 end

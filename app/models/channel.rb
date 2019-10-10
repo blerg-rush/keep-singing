@@ -13,8 +13,6 @@ class Channel < ApplicationRecord
     yt_videos = yt_channel.videos
                           .where(published_after: when_last_scraped)
     scrape_page(yt_videos)
-    self.last_scraped = Time.zone.now
-    save
   end
 
   private
@@ -28,8 +26,6 @@ class Channel < ApplicationRecord
                             .where(published_before: when_last_published)
                             .first(50)
       scrape_page(yt_videos)
-      self.last_scraped = Time.zone.now
-      save
       scrape if yt_videos.count == 50
     end
 
@@ -40,6 +36,8 @@ class Channel < ApplicationRecord
         video ||= videos.build(uid: yt_video.id)
         video.fill_details(yt_video)
       end
+      self.last_scraped = Time.zone.now
+      save
     end
 
     # Returns datetime when the last scraped video was published, or

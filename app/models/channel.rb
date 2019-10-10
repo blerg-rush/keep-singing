@@ -6,6 +6,17 @@ class Channel < ApplicationRecord
     scrape
   end
 
+  # Scrapes all videos added to a channel since the last scrape
+  # YouTube API quota cost: 3 + 100 for each 50 videos scraped
+  def update
+    yt_channel = Yt::Channel.new id: uid
+    yt_videos = yt_channel.videos
+                          .where(published_after: when_last_scraped)
+    scrape_page(yt_videos)
+    self.last_scraped = Time.zone.now
+    save
+  end
+
   private
 
     # Queries the YT API for the current channel's videos, repeating

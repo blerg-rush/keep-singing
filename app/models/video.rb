@@ -3,6 +3,12 @@ class Video < ApplicationRecord
   belongs_to :channel
 
   ## TODO: Reactivate single-video creation
+  def save_and_scrape!
+    return false unless valid?
+
+    query_details
+    save
+  end
 
   # Passes new video details from API collection object
   def fill_details(yt_video)

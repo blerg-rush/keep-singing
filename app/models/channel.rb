@@ -2,8 +2,10 @@ class Channel < ApplicationRecord
   validates :uid, presence: true, uniqueness: true
   has_many :videos, dependent: :nullify
 
-  before_validation(if: -> { uid.present? && changes[:uid].present? }) do
-    scrape
+  # Sends scrape task to background task
+  def save_and_scrape!
+    save
+    NewChannelScraper.perform_async(id)
   end
 
   # Queries the YT API for the current channel's videos, repeating

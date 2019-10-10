@@ -7,6 +7,8 @@ class Channel < ApplicationRecord
   end
 
   # Scrapes all videos added to a channel since the last scrape
+  # Not meant to add entire channels; will fail entirely if
+  # it attempts to scrape more videos than quota allows
   # YouTube API quota cost: 3 + 100 for each 50 videos scraped
   def update
     yt_channel = Yt::Channel.new id: uid

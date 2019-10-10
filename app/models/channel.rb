@@ -4,10 +4,10 @@ class Channel < ApplicationRecord
 
   # Sends scrape task to background task
   def save_and_scrape!
-    return false if uid.blank?
+    return false unless valid?
 
-    save
-    if changes[:uid].present?
+    uid_changed = changes[:uid].present?
+    if save && uid_changed
       NewChannelScraper.perform_async(id)
     else
       UpdateChannelScraper.perform_async(id)

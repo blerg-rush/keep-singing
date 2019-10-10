@@ -5,8 +5,8 @@ class ChannelsController < ApplicationController
 
   def create
     @channel = Channel.find_or_initialize_by(channel_params)
-    if @channel.save
-      flash[:success] = 'Channel imported!'
+    if @channel.save_and_scrape!
+      flash[:success] = 'Channel added to import queue!'
       redirect_to root_path
     else
       flash.now[:danger] = 'Channel ID error'

@@ -10,6 +10,7 @@ class Video < ApplicationRecord
     self.link ||= "https://www.youtube.com/watch?v=#{yt_video.id}"
     self.description ||= yt_video.description
     self.channel_uid ||= yt_video.channel_id
+    self.published_at ||= yt_video.published_at
   end
 
   # Grabs new video details from Yt API

@@ -20,19 +20,31 @@ class Channel < ApplicationRecord
 
   private
 
+    # In their current form, the below methods are _only_ for scraping
+    # new channels, not updating old ones.
     # YouTube API quota cost: 3 + 100 for each page scraped / 10,000/day
+    # def scrape
+    #   yt_channel = Yt::Channel.new id: uid
+    #   unless page_token.nil?
+    #     yt_channel.instance_variable_set(:@page_token, page_token)
+    #   end
+    #   scrape_page(yt_channel)
+    #   self.page_token = yt_channel.instance_variable_get(:@page_token)
+    #   save
+    # end
+
     def scrape
       yt_channel = Yt::Channel.new id: uid
-      unless page_token.nil?
-        yt_channel.instance_variable_set(:@page_token, page_token)
-      end
-      process_videos(yt_channel)
-      self.page_token = yt_channel.instance_variable_get(:@page_token)
+      videos = yt_channel.videos
+                         .where(published_before: videos.last&.published_at)
+                         .first(50)
+      scrape_page(videos)
       save
+
+      scrape if videos.count == 50
     end
 
-    def scrape_page(yt_channel)
-      videos = yt_channel.videos.where(pageToken: page_token).first(50)
+    def scrape_page(videos)
       videos.each do |yt_video|
         video = videos.find { |v| v.uid == yt_video.id }
         video ||= videos.build(uid: yt_video.id)

@@ -20,6 +20,7 @@ class Channel < ApplicationRecord
 
   private
 
+    # YouTube API quota cost: 3 + 100 for each page scraped / 10,000/day
     def scrape
       yt_channel = Yt::Channel.new id: uid
       unless page_token.nil?
@@ -31,7 +32,7 @@ class Channel < ApplicationRecord
     end
 
     def scrape_page(yt_channel)
-      videos = yt_channel.videos.first(50)
+      videos = yt_channel.videos.where(pageToken: page_token).first(50)
       videos.each do |yt_video|
         video = videos.find { |v| v.uid == yt_video.id }
         video ||= videos.build(uid: yt_video.id)

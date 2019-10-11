@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   get 'channels/index'
   get 'channels/create'
   get 'channels/destroy'
-  get '/search/:q', to: 'videos#search', as: 'search_page'
+  get '/search', to: 'videos#search', as: 'search_page'
   get 'home/index'
   get 'videos/new'
   get 'videos/index'

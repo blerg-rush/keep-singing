@@ -9,9 +9,10 @@ class VideosController < ApplicationController
     @videos = if query
                 Video.search(query)
               else
-                flash.now[:info] = "No videos found"
+                flash.now[:info] = 'No videos found'
                 Video.order('created_at DESC').take(50)
               end
+    @video = @videos.first
   end
 
   def show
@@ -38,6 +39,6 @@ class VideosController < ApplicationController
   private
 
     def video_params
-      params.require(:video).permit(:uid, :q)
+      params.require(:video).permit(:uid)
     end
 end

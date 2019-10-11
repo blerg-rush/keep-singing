@@ -1,0 +1,15 @@
+<div class="row">
+  <div class="col col-md-9">
+    <%= render @video %>
+  </div>
+  <div class="col col-md-3">
+    <div class="row mb-3 justify-content-center">
+      <%= link_to "Add Videos", videos_new_path, class: "btn btn-sm btn-outline-success" %>
+    </div>
+    <div class="row thumbnail-scroll justify-content-center">
+      <% if @videos.any? %>
+        <%= render 'videos/thumbnail', locals: {video: @videos} %>
+      <% end %>
+    </div>
+  </div>
+</div>

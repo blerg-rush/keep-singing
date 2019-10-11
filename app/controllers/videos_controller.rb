@@ -12,7 +12,6 @@ class VideosController < ApplicationController
                 flash.now[:info] = 'No videos found'
                 Video.order('created_at DESC').take(50)
               end
-    @video = @videos.first
   end
 
   def show

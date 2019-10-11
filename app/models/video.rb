@@ -1,8 +1,16 @@
 class Video < ApplicationRecord
+  searchkick :word_middle 
   validates :uid, presence: true, uniqueness: true
   belongs_to :channel
 
-  ## TODO: Reactivate single-video creation
+  def search_data
+    {
+      title: title,
+      description: description
+    }
+  end
+
+  # Scrapes a single video immediately
   def save_and_scrape!
     return false unless valid?
 

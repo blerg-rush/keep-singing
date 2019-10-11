@@ -4,6 +4,8 @@ class VideosController < ApplicationController
     @video = Video.last
   end
 
+  def search; end
+
   def show
     @videos = Video.order('created_at DESC')
     @video = Video.find(params[:id])

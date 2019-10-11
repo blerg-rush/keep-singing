@@ -4,7 +4,14 @@ class VideosController < ApplicationController
     @video = Video.last
   end
 
-  def search; end
+  def search
+    query = params[:q].presence
+    @videos = if search
+                Video.search(query)
+              else
+                Video.order('created_at DESC').take(50)
+              end
+  end
 
   def show
     @videos = Video.order('created_at DESC')

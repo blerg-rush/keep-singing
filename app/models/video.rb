@@ -1,5 +1,5 @@
 class Video < ApplicationRecord
-  searchkick :word_middle [:title, :description]
+  searchkick word_middle: %i[title description]
   validates :uid, presence: true, uniqueness: true
   belongs_to :channel
 

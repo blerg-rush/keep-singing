@@ -6,9 +6,10 @@ class VideosController < ApplicationController
 
   def search
     query = params[:q].presence
-    @videos = if search
+    @videos = if query
                 Video.search(query)
               else
+                flash.now[:info] = "No videos found"
                 Video.order('created_at DESC').take(50)
               end
   end

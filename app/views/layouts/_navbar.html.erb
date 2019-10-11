@@ -8,9 +8,9 @@
   </button>
 
   <div class="collapse navbar-collapse" id="navbarToggler">
-    <form class="form-inline ml-auto">
-      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-      <button class="btn btn-outline-info my-2 my-sm-0" type="submit">Search</button>
-    </form>
+    <%= form_with url: search_page_path(:id), method: :get, class: "form-inline ml-auto", local: true do |f| %>
+      <%= f.text_field :q, id: :q, class: "form-control mr-sm-2", placeholder: "Search", "aria-label": "Search" %>
+      <%= f.submit "Search", name: nil, class: "btn btn-outline-info my-2 my-sm-0" %>
+    <% end %>
   </div>
 </div>

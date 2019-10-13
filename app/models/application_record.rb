@@ -3,8 +3,8 @@ class ApplicationRecord < ActiveRecord::Base
 
   def trim(title)
     # existing
-    title.to_s.gsub(/(K|k)araoke (V|v)ersion/, '')
-         .gsub(/(K|k)araoke/, '')
+    title.to_s.gsub(/[\(\[]?karaoke version[\)\}]?/i, '')
+         .gsub(/karaoke/i, '')
          .squish
   end
 end

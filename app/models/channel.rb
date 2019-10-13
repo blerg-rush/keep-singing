@@ -1,6 +1,6 @@
 class Channel < ApplicationRecord
   validates :uid, presence: true, uniqueness: true
-  has_many :videos, dependent: :nullify
+  has_many :videos, dependent: :destroy
 
   # Sends scrape job to background tasks
   def save_and_scrape!

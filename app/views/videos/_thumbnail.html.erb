@@ -1,9 +1,11 @@
 <% @videos.each do |video| %>
-  <div class="yt_video mx-auto thumbnail">
+  <div class="yt_video mx-auto thumbnail-item">
     <%= link_to video do %>
-      <%= image_tag "https://img.youtube.com/vi/#{video.uid}/mqdefault.jpg", alt: video.title %>
+      <%= image_tag "https://img.youtube.com/vi/#{video.uid}/mqdefault.jpg",
+        alt: video.title,
+        class: "thumbnail mx-1" %>
     <% end %>
-    <div class="caption">
+    <div class="caption mb-3 text-center">
       <h5><%= video.title %></h5>
     </div>
   </div>

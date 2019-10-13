@@ -10,6 +10,14 @@ $theme-colors: (
   "hover-light": rgb(255,255,255)
 );
 
+$media-breakpoints: (
+  xs: 0,
+  sm: 480px,
+  md: 768px,
+  lg: 1024px,
+  xl: 1024px
+);
+
 body {
   background-color: map_get($theme-colors, 'bg');
   min-height: 100vh;
@@ -41,6 +49,28 @@ p, h1, h2, h3, h4, h5 {
   overflow-y: scroll;
 }
 
-.thumbnail {
+.thumbnail-item {
   max-width: 320px;
+}
+
+.thumbnail {
+  width: 100%;
+}
+
+@include media-breakpoint-down(lg) {
+  .thumbnail-item {
+    max-width: 260px;
+  }
+  .thumbnail {
+    max-width: 260px;
+  }
+}
+
+@include media-breakpoint-down(xs) {
+  .thumbnail-item {
+    max-width: 320px;
+  }
+  .thumbnail {
+    max-width: 320px;
+  }
 }

@@ -1,8 +1,9 @@
+<%# TODO: remove repetition between this and index %>
 <div class="row">
-  <div class="col col-md-9">
+  <div class="col col-12 col-xl-9">
     <%= render @video %>
   </div>
-  <div class="col col-md-3">
+  <div class="col col-12 col-xl-3 sidebar">
     <div class="row mb-3 justify-content-center">
       <%= link_to "Add Videos", new_video_path, class: "btn btn-sm btn-outline-success" %>
     </div>

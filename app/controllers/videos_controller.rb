@@ -1,7 +1,13 @@
 class VideosController < ApplicationController
   def index
-    @videos = Video.order('created_at DESC').take(50)
-    @video = Video.last
+    query = params[:q].presence
+    @videos = if query
+                Video.search(query)
+              else
+                flash.now[:info] = 'No videos found'
+                Video.order('created_at DESC').take(50)
+              end
+    @video = @videos.first
   end
 
   def search
@@ -12,6 +18,7 @@ class VideosController < ApplicationController
                 flash.now[:info] = 'No videos found'
                 Video.order('created_at DESC').take(50)
               end
+    @video = @videos.first
   end
 
   def show

@@ -1,6 +1,12 @@
 <div class="row">
   <div class="col col-12 col-xl-9">
-    <%= render @video %>
+    <% if @video.nil? %>
+    <p>
+      Try adding a video from YouTube!
+    </p>
+    <% else %>
+      <%= render @video %>
+    <% end %>
   </div>
   <div class="col col-12 col-xl-3 sidebar">
     <div class="row mb-3 justify-content-center">

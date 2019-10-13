@@ -9,7 +9,7 @@ class ChannelsController < ApplicationController
       flash[:success] = 'Channel added to import queue!'
       redirect_to root_path
     else
-      flash.now[:danger] = 'Channel ID error'
+      flash.now[:danger] = @channel.errors.full_messages.to_sentence
       render 'videos/new'
     end
   end

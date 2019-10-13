@@ -1,5 +1,7 @@
 class Channel < ApplicationRecord
-  validates :uid, presence: true, uniqueness: true
+  validates :uid, presence: true, uniqueness: true,
+                  exclusion: { in: NON_EMBEDDABLE_CHANNELS,
+                               message: '– This channel cannot be embedded' }
   has_many :videos, dependent: :destroy
 
   # Sends scrape job to background tasks

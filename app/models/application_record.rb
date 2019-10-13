@@ -8,6 +8,7 @@ class ApplicationRecord < ActiveRecord::Base
     # existing
     title.to_s.gsub(/[\(\[]?karaoke version[\)\}]?/i, '')
          .gsub(/[\(\[]?karaoke[\)\}]?/i, '')
+         .gsub('&#39;', "'")
          .squish
   end
 end

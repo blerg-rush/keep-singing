@@ -1,0 +1,110 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://www.googleapis.com/youtube/v3/videos?id=OQSNhk5ICTI&key=AIzaSyB5zVpqgRNgR9fHe-Z0byOWXrv8J4hO8bs&part=snippet
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Content-Length:
+      - '0'
+      User-Agent:
+      - Yt::Request (gzip)
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Expires:
+      - Tue, 15 Oct 2019 22:54:33 GMT
+      Date:
+      - Tue, 15 Oct 2019 22:54:33 GMT
+      Cache-Control:
+      - private, max-age=300, must-revalidate, no-transform
+      Etag:
+      - '"p4VTdlkQv3HQeTEaXgvLePAydmU/eUu7wJuQD2SnvpLbHGtsIHOsWDE"'
+      Vary:
+      - Origin
+      - X-Origin
+      Content-Type:
+      - application/json; charset=UTF-8
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Xss-Protection:
+      - 1; mode=block
+      Content-Length:
+      - '2661'
+      Server:
+      - GSE
+      Alt-Svc:
+      - quic=":443"; ma=2592000; v="46,43",h3-Q048=":443"; ma=2592000,h3-Q046=":443";
+        ma=2592000,h3-Q043=":443"; ma=2592000
+    body:
+      encoding: UTF-8
+      string: |
+        {
+         "kind": "youtube#videoListResponse",
+         "etag": "\"p4VTdlkQv3HQeTEaXgvLePAydmU/eUu7wJuQD2SnvpLbHGtsIHOsWDE\"",
+         "pageInfo": {
+          "totalResults": 1,
+          "resultsPerPage": 1
+         },
+         "items": [
+          {
+           "kind": "youtube#video",
+           "etag": "\"p4VTdlkQv3HQeTEaXgvLePAydmU/oxnnRDTxoTgRO-6AV89kEhtXpbw\"",
+           "id": "OQSNhk5ICTI",
+           "snippet": {
+            "publishedAt": "2010-01-09T02:14:30.000Z",
+            "channelId": "UCTyFi_QGObn2xEzasG_zR8Q",
+            "title": "Yosemitebear Mountain Double Rainbow 1-8-10",
+            "description": "It was rainbowing for at least an hour on January 8th 2010. It was incredible. The camera could not capture the vivid intensity and brightness. Look into the mirror, look into your soul! \n\nMy magic pain relieving cream that I made from the strain of plants that are in this video at the very beginning.\n https://www.youtube.com/watch?v=XB7hwSFjdYQ\n\nWhat it Means\nhttps://www.youtube.com/watch?v=0VZiwmRb3xc&index=1&list=PLCgJeOXVn5IeTpAFDhUL3pvTVlF9HW23y\n\nDouble Rainbow book now on sale on Amazon.\nhttps://www.youtube.com/watch?v=FiMnVZblyRQ\n\nDouble Rainbow Weed.  \nhttps://www.youtube.com/watch?v=Vh_pV9Y3dEw",
+            "thumbnails": {
+             "default": {
+              "url": "https://i.ytimg.com/vi/OQSNhk5ICTI/default.jpg",
+              "width": 120,
+              "height": 90
+             },
+             "medium": {
+              "url": "https://i.ytimg.com/vi/OQSNhk5ICTI/mqdefault.jpg",
+              "width": 320,
+              "height": 180
+             },
+             "high": {
+              "url": "https://i.ytimg.com/vi/OQSNhk5ICTI/hqdefault.jpg",
+              "width": 480,
+              "height": 360
+             }
+            },
+            "channelTitle": "Yosemitebear62",
+            "tags": [
+             "Double Rainbow",
+             "Yosemitebear",
+             "Paul Vasquez",
+             "meme",
+             "Yosemite",
+             "Double Rainbow Guy",
+             "Viral",
+             "Yosemitebear Mountain Farm",
+             "Icon",
+             "Original",
+             "Original No",
+             "Mariposa",
+             "California"
+            ],
+            "categoryId": "22",
+            "liveBroadcastContent": "none",
+            "localized": {
+             "title": "Yosemitebear Mountain Double Rainbow 1-8-10",
+             "description": "It was rainbowing for at least an hour on January 8th 2010. It was incredible. The camera could not capture the vivid intensity and brightness. Look into the mirror, look into your soul! \n\nMy magic pain relieving cream that I made from the strain of plants that are in this video at the very beginning.\n https://www.youtube.com/watch?v=XB7hwSFjdYQ\n\nWhat it Means\nhttps://www.youtube.com/watch?v=0VZiwmRb3xc&index=1&list=PLCgJeOXVn5IeTpAFDhUL3pvTVlF9HW23y\n\nDouble Rainbow book now on sale on Amazon.\nhttps://www.youtube.com/watch?v=FiMnVZblyRQ\n\nDouble Rainbow Weed.  \nhttps://www.youtube.com/watch?v=Vh_pV9Y3dEw"
+            }
+           }
+          }
+         ]
+        }
+    http_version: 
+  recorded_at: Tue, 15 Oct 2019 22:54:33 GMT
+recorded_with: VCR 5.0.0

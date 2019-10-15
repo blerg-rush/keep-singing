@@ -32,14 +32,22 @@ jobs:
       uses: actions/setup-ruby@v1
       with:
         ruby-version: 2.6.x
-    - name: add PostgreSQL dependencies
-      run: |
+    - name: Add PostgreSQL dependencies
+      run: 
         sudo apt-get update
         sudo apt-get -yqq install libpq-dev
+    - name: Verify Elasticsearch connection from host
+      env:
+        ELASTIC_SEARCH_URL: http://localhost:${{ job.services.elasticsearch.ports[9200] }}
+      run: |
+        echo $ELASTIC_SEARCH_URL
+        curl -fsSL "$ELASTIC_SEARCH_URL/_cat/health?h=status"
     - name: Build and test Rails
       env:
         PGHOST: 127.0.0.1
         PGUSER: postgres
+        REDIS_PORT: ${{ job.services.redis.ports[6379] }}
+        ELASTIC_SEARCH_URL: http://localhost:${{ job.services.elasticsearch.ports[9200] }}
         RAILS_ENV: test
       run: |
         gem install bundler

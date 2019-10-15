@@ -38,16 +38,16 @@ jobs:
         sudo apt-get -yqq install libpq-dev
     - name: Verify Elasticsearch connection from host
       env:
-        ELASTIC_SEARCH_URL: http://localhost:${{ job.services.elasticsearch.ports[9200] }}
+        ELASTICSEARCH_URL: http://localhost:${{ job.services.elasticsearch.ports[9200] }}
       run: |
-        echo $ELASTIC_SEARCH_URL
-        curl -fsSL "$ELASTIC_SEARCH_URL/_cat/health?h=status"
+        echo $ELASTICSEARCH_URL
+        curl -fsSL "$ELASTICSEARCH_URL/_cat/health?h=status"
     - name: Build and test Rails
       env:
         PGHOST: 127.0.0.1
         PGUSER: postgres
         REDIS_PORT: ${{ job.services.redis.ports[6379] }}
-        ELASTIC_SEARCH_URL: http://localhost:${{ job.services.elasticsearch.ports[9200] }}
+        ELASTICSEARCH_URL: http://localhost:${{ job.services.elasticsearch.ports[9200] }}
         RAILS_ENV: test
       run: |
         gem install bundler
@@ -56,6 +56,5 @@ jobs:
         bundle exec rails webpacker:compile
         bundle exec rails db:create
         bundle exec rails db:migrate
-        echo $ELASTIC_SEARCH_URL
         bundle exec rspec
         bundle exec rubocop

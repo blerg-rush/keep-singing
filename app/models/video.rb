@@ -1,7 +1,7 @@
 class Video < ApplicationRecord
   searchkick word_middle: %i[title description]
   validates :uid, presence: true, uniqueness: true
-  belongs_to :channel
+  belongs_to :channel, optional: true
 
   def search_data
     {

@@ -15,7 +15,16 @@ jobs:
           --health-cmd pg_isready
           --health-interval 10s
           --health-timeout 5s
-          --health-retries 5 
+          --health-retries 5
+      redis:
+        image: redis
+        ports:
+        - 6379/tcp
+      elasticsearch:
+        image: elasticsearch:7.3.0
+        ports:
+        - 9200/tcp
+        options: -e="discovery.type=single-node" --health-cmd="curl http://localhost:9200/_cluster/health" --health-interval=10s --health-timeout=5s --health-retries=10
 
     steps:
     - uses: actions/checkout@v1
@@ -23,14 +32,22 @@ jobs:
       uses: actions/setup-ruby@v1
       with:
         ruby-version: 2.6.x
-    - name: add PostgreSQL dependencies
+    - name: Add PostgreSQL dependencies
       run: |
         sudo apt-get update
         sudo apt-get -yqq install libpq-dev
+    - name: Verify Elasticsearch connection from host
+      env:
+        ELASTICSEARCH_URL: http://localhost:${{ job.services.elasticsearch.ports[9200] }}
+      run: |
+        echo $ELASTICSEARCH_URL
+        curl -fsSL "$ELASTICSEARCH_URL/_cat/health?h=status"
     - name: Build and test Rails
       env:
         PGHOST: 127.0.0.1
         PGUSER: postgres
+        REDIS_PORT: ${{ job.services.redis.ports[6379] }}
+        ELASTICSEARCH_URL: http://localhost:${{ job.services.elasticsearch.ports[9200] }}
         RAILS_ENV: test
       run: |
         gem install bundler
@@ -39,5 +56,5 @@ jobs:
         bundle exec rails webpacker:compile
         bundle exec rails db:create
         bundle exec rails db:migrate
-        bundle exec rails test
+        bundle exec rspec
         bundle exec rubocop

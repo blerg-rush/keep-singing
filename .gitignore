@@ -30,3 +30,5 @@
 yarn-debug.log*
 .yarn-integrity
 .env
+spec/examples.txt
+.rubocop-https---raw-githubusercontent-com-rubocop-hq-rubocop-master-config-default-yml

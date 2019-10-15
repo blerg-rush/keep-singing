@@ -56,5 +56,6 @@ jobs:
         bundle exec rails webpacker:compile
         bundle exec rails db:create
         bundle exec rails db:migrate
+        echo $ELASTIC_SEARCH_URL
         bundle exec rspec
         bundle exec rubocop

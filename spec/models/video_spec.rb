@@ -18,4 +18,15 @@ RSpec.describe Video, type: :model do
     video2 = build(:video)
     expect(video2).to_not be_valid
   end
+
+  describe '#fill_details' do
+    it 'adds missing video details from API' do
+      VCR.use_cassette('single_video') do
+        video2 = Video.new uid: 'OQSNhk5ICTI'
+        yt_video = Yt::Video.new id: video2.uid
+        video2.fill_details(yt_video)
+        expect(video2.title).to eq 'Yosemitebear Mountain Double Rainbow 1-8-10'
+      end
+    end
+  end
 end

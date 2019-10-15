@@ -23,8 +23,8 @@ jobs:
       elasticsearch:
         image: elasticsearch:7.3.0
         ports:
-        - 9200/tcp
-        options: -e="discovery.type=single-node" --health-cmd="curl http://localhost:9200/_cluster/health" --health-interval=10s --health-timeout=5s --health-retries=10
+        - 32769/tcp
+        options: -e="discovery.type=single-node" --health-cmd="curl http://localhost:32769/_cluster/health" --health-interval=10s --health-timeout=5s --health-retries=10
 
     steps:
     - uses: actions/checkout@v1
@@ -38,7 +38,7 @@ jobs:
         sudo apt-get -yqq install libpq-dev
     - name: Verify Elasticsearch connection from host
       env:
-        ELASTIC_SEARCH_URL: http://localhost:${{ job.services.elasticsearch.ports[9200] }}
+        ELASTIC_SEARCH_URL: http://localhost:${{ job.services.elasticsearch.ports[32769] }}
       run: |
         echo $ELASTIC_SEARCH_URL
         curl -fsSL "$ELASTIC_SEARCH_URL/_cat/health?h=status"
@@ -47,7 +47,7 @@ jobs:
         PGHOST: 127.0.0.1
         PGUSER: postgres
         REDIS_PORT: ${{ job.services.redis.ports[6379] }}
-        ELASTIC_SEARCH_URL: http://localhost:${{ job.services.elasticsearch.ports[9200] }}
+        ELASTIC_SEARCH_URL: http://localhost:${{ job.services.elasticsearch.ports[32769] }}
         RAILS_ENV: test
       run: |
         gem install bundler

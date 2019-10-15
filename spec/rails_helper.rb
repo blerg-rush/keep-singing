@@ -11,6 +11,7 @@ end
 require 'rspec/rails'
 require 'capybara/rspec'
 require 'support/factory_bot'
+require 'support/database_cleaner'
 
 begin
   ActiveRecord::Migration.maintain_test_schema!

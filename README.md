@@ -73,8 +73,8 @@ foreman start -f Procfile.dev
 Pull requests are greatly appreciated! Please submit all pull requests to the _develop_ branch. CI checks will require that your tests pass and that there are no rubocop offenses, so before you push to your fork it's a good idea to run the following on your local machine:
 
 ```bash
-bin/rails test
+bundle exec rspec
 ```
 ```bash
-rubocop -p
+bundle exec rubocop -p
 ```

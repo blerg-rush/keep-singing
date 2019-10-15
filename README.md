@@ -76,5 +76,5 @@ Pull requests are greatly appreciated! Please submit all pull requests to the _d
 bundle exec rspec
 ```
 ```bash
-bundle exec rubocop -p
+bundle exec rubocop -P
 ```

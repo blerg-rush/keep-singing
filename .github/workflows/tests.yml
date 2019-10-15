@@ -33,7 +33,7 @@ jobs:
       with:
         ruby-version: 2.6.x
     - name: Add PostgreSQL dependencies
-      run: 
+      run: |
         sudo apt-get update
         sudo apt-get -yqq install libpq-dev
     - name: Verify Elasticsearch connection from host

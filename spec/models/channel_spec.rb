@@ -23,4 +23,10 @@ RSpec.describe Channel, type: :model do
     @channel1.uid = NON_EMBEDDABLE_CHANNELS[0]
     expect(@channel1).to_not be_valid
   end
+
+  it 'has many videos' do
+    old_count = @channel1.videos.count
+    @channel1.videos.create(uid: '123456789')
+    expect(@channel1.videos.count).to_not eq old_count
+  end
 end

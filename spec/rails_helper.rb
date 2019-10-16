@@ -10,8 +10,9 @@ if Rails.env.production?
 end
 require 'rspec/rails'
 require 'capybara/rspec'
-require 'support/factory_bot'
 require 'support/database_cleaner'
+require 'support/factory_bot'
+require 'support/vcr_setup'
 
 begin
   ActiveRecord::Migration.maintain_test_schema!

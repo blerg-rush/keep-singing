@@ -49,6 +49,7 @@ jobs:
         REDIS_PORT: ${{ job.services.redis.ports[6379] }}
         ELASTICSEARCH_URL: http://localhost:${{ job.services.elasticsearch.ports[9200] }}
         RAILS_ENV: test
+        YT_API_KEY: ${{ secrets.YT_API_KEY }}
       run: |
         gem install bundler
         bundle install --jobs 4 --retry 3

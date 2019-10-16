@@ -29,4 +29,16 @@ RSpec.describe Channel, type: :model do
     @channel1.videos.create(uid: '123456789')
     expect(@channel1.videos.count).to_not eq old_count
   end
+
+  describe '#scrape' do
+    it 'scrapes video data from YouTube channel' do
+      VCR.use_cassette('youtube_channel') do
+        channel = Channel.create(uid: 'UCJcVBPVfTbFIAoEfPOmGLFg')
+        old_count = channel.videos.count
+        channel.scrape
+        channel.save
+        expect(channel.videos).to_not eq old_count
+      end
+    end
+  end
 end

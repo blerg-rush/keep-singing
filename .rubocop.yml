@@ -100,9 +100,9 @@ Metrics/BlockLength:
     # By default, exclude the `#refine` method, as it tends to have larger
     # associated blocks.
     - refine
+    - describe
   Exclude:
     - '**/*.gemspec'
-    - '**/*.spec.rb'
 
 #################### Style ###############################
 

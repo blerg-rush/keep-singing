@@ -34,4 +34,13 @@ class Video < ApplicationRecord
   rescue Yt::Errors::NoItems
     self.title = ''
   end
+
+  # Removes unnecessary substrings from video title
+  def trim(title)
+    # existing
+    title.to_s.gsub(/[\(\[]?karaoke version[\)\}]?/i, '')
+         .gsub(/[\(\[]?karaoke[\)\}]?/i, '')
+         .gsub('&#39;', "'")
+         .squish
+  end
 end

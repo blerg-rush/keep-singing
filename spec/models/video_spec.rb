@@ -28,5 +28,13 @@ RSpec.describe Video, type: :model do
         expect(video2.title).to eq 'Yosemitebear Mountain Double Rainbow 1-8-10'
       end
     end
+
+    it "doesn't overwrite existing details" do
+      VCR.use_cassette('single_video') do
+        yt_video = Yt::Video.new id: 'OQSNhk5ICTI'
+        @video1.fill_details(yt_video)
+        expect(@video1.title).to_not eq 'Yosemitebear Mountain Double Rainbow 1-8-10'
+      end
+    end
   end
 end

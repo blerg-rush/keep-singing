@@ -1,0 +1,21 @@
+<div class="navbar footer bg-dark fixed-bottom">
+  <div class="d-flex text-lt">
+  </div>
+  <div class="d-flex text-lt">
+    <% if user_signed_in? %>
+      <%= link_to(destroy_user_session_path, method: :delete, class: "nostyle") do %>
+        <i class="fas fa-sign-out-alt mr-1"></i>
+        <small> Log Out</small>
+        <% end %>
+    <% else %>
+      <%= link_to(new_user_session_path, class: "nostyle text-info") do %>
+        <i class="fas fa-lock"></i>
+        <small> Login</small>
+      <% end %>
+      <%= link_to(new_user_registration_path, class: "nostyle ml-3 text-info") do %>
+        <i class="fas fa-user"></i>
+        <small> Sign Up</small>
+      <% end %>
+    <% end %>
+  </div>
+</div>

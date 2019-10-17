@@ -49,6 +49,10 @@ p, h1, h2, h3, h4, h5 {
   overflow-y: scroll;
 }
 
+.text-lt {
+  color: map_get($theme-colors, 'text-light');
+}
+
 .thumbnail-item {
   max-width: 320px;
 }

@@ -4,6 +4,7 @@ $theme-colors: (
   "bg": #272b30,
   "bg-dark": rgb(60, 179, 143),
   "text-light": rgb(245,245,245),
+  "text-medium": rgb(219, 218, 218),
   "text-dark": #343a40,
   "link-dark": rgb(78,161,136),
   "hover-dark": rgb(61,127,107),
@@ -47,6 +48,14 @@ p, h1, h2, h3, h4, h5 {
 .sidebar {
   height: 90vh;
   overflow-y: scroll;
+}
+
+.text-lt {
+  color: map_get($theme-colors, 'text-light');
+}
+
+.text-md {
+  color: map_get($theme-colors, 'text-medium');
 }
 
 .thumbnail-item {

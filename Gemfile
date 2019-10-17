@@ -67,6 +67,7 @@ gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 gem 'yt', '~> 0.32.0'
 
 # Frontend
+gem 'devise-bootstrap-views'
 
 # Tools
 gem 'devise'

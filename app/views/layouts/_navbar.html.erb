@@ -9,7 +9,6 @@
 
   <div class="collapse navbar-collapse" id="navbarToggler">
     <%= form_with url: search_page_path, method: :get, class: "form-inline ml-auto", local: true do |f| %>
-      <%= f.label :q %>
       <%= f.text_field :q, class: "form-control mr-sm-2", placeholder: "Search", "aria-label": "Search" %>
       <%= f.submit "Search", name: nil, class: "btn btn-outline-info my-2 my-sm-0" %>
     <% end %>

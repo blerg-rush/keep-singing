@@ -1,0 +1,15 @@
+version: 1
+update_configs:
+  - package_manager: "ruby:bundler"
+    directory: "/"
+    update_schedule: "live"
+    target_branch: "develop"
+    default_reviewers:
+      - "TheWillGabriel"
+  - package_manager: "javascript"
+    directory: "/"
+    update_schedule: "live"
+    target_branch: "develop"
+    default_reviewers:
+      - "TheWillGabriel"
+      

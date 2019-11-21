@@ -1,63 +1,4 @@
-inherit_from:
-  - https://raw.githubusercontent.com/rubocop-hq/rubocop/master/config/default.yml
-
 AllCops:
-  RubyInterpreters:
-    - ruby
-    - macruby
-    - rake
-    - jruby
-    - rbx
-  # Include common Ruby source files.
-  Include:
-    - '**/*.rb'
-    - '**/*.arb'
-    - '**/*.axlsx'
-    - '**/*.builder'
-    - '**/*.fcgi'
-    - '**/*.gemfile'
-    - '**/*.gemspec'
-    - '**/*.god'
-    - '**/*.jb'
-    - '**/*.jbuilder'
-    - '**/*.mspec'
-    - '**/*.opal'
-    - '**/*.pluginspec'
-    - '**/*.podspec'
-    - '**/*.rabl'
-    - '**/*.rake'
-    - '**/*.rbuild'
-    - '**/*.rbw'
-    - '**/*.rbx'
-    - '**/*.ru'
-    - '**/*.ruby'
-    - '**/*.spec'
-    - '**/*.thor'
-    - '**/*.watchr'
-    - '**/.irbrc'
-    - '**/.pryrc'
-    - '**/buildfile'
-    - '**/Appraisals'
-    - '**/Berksfile'
-    - '**/Brewfile'
-    - '**/Buildfile'
-    - '**/Capfile'
-    - '**/Cheffile'
-    - '**/Dangerfile'
-    - '**/Deliverfile'
-    - '**/Fastfile'
-    - '**/*Fastfile'
-    - '**/Gemfile'
-    - '**/Guardfile'
-    - '**/Jarfile'
-    - '**/Mavenfile'
-    - '**/Podfile'
-    - '**/Puppetfile'
-    - '**/Rakefile'
-    - '**/Snapfile'
-    - '**/Thorfile'
-    - '**/Vagabondfile'
-    - '**/Vagrantfile'
   Exclude:
     - 'node_modules/**/*'
     - 'vendor/**/*'
@@ -69,36 +10,16 @@ AllCops:
 #################### Layout ###########################
 
 Layout/IndentationConsistency:
-  Description: 'Keep indentation straight.'
-  StyleGuide: '#spaces-indentation'
   Enabled: true
-  VersionAdded: '0.49'
-  # The difference between `indented` and `normal` is that the `indented_internal_methods`
-  # style prescribes that in classes and modules the `protected` and `private`
-  # modifier keywords shall be indented the same as public methods and that
-  # protected and private members shall be indented one step more than the
-  # modifiers. Other than that, both styles mean that entities on the same
-  # logical depth shall have the same indentation.
   EnforcedStyle: indented_internal_methods
-  SupportedStyles:
-    - normal
-    - indented_internal_methods
-  Reference:
-    # A reference to `EnforcedStyle: indented_internal_methods`.
-    - https://edgeguides.rubyonrails.org/contributing_to_ruby_on_rails.html#follow-the-coding-conventions
 
 #################### Metrics ###############################
 
 Metrics/BlockLength:
-  Description: 'Avoid long blocks with many lines.'
   Enabled: true
-  VersionAdded: '0.44'
-  VersionChanged: '0.66'
-  CountComments: false  # count full line comments?
+  CountComments: false
   Max: 25
   ExcludedMethods:
-    # By default, exclude the `#refine` method, as it tends to have larger
-    # associated blocks.
     - refine
     - describe
   Exclude:
@@ -107,58 +28,10 @@ Metrics/BlockLength:
 #################### Style ###############################
 
 Style/ClassAndModuleChildren:
-  Description: 'Checks style of children classes and modules.'
-  StyleGuide: '#namespace-definition'
-  # Moving from compact to nested children requires knowledge of whether the
-  # outer parent is a module or a class. Moving from nested to compact requires
-  # verification that the outer parent is defined elsewhere. Rubocop does not
-  # have the knowledge to perform either operation safely and thus requires
-  # manual oversight.
-  SafeAutoCorrect: false
-  AutoCorrect: false
   Enabled: false
-  VersionAdded: '0.19'
-  #
-  # Basically there are two different styles:
-  #
-  # `nested` - have each child on a separate line
-  #   class Foo
-  #     class Bar
-  #     end
-  #   end
-  #
-  # `compact` - combine definitions as much as possible
-  #   class Foo::Bar
-  #   end
-  #
-  # The compact style is only forced, for classes or modules with one child.
-  EnforcedStyle: nested
-  SupportedStyles:
-    - nested
-    - compact
 
 Style/Documentation:
-  Description: 'Document classes and non-namespace modules.'
   Enabled: false
-  VersionAdded: '0.9'
-  Exclude:
-    - 'spec/**/*'
-    - 'test/**/*'
 
 Style/FrozenStringLiteralComment:
-  Description: >-
-                 Add the frozen_string_literal comment to the top of files
-                 to help transition to frozen string literals by default.
-  Enabled: true
-  VersionAdded: '0.36'
-  VersionChanged: '0.69'
-  EnforcedStyle: never
-  SupportedStyles:
-    # `always` will always add the frozen string literal comment to a file
-    # regardless of the Ruby version or if `freeze` or `<<` are called on a
-    # string literal. If you run code against multiple versions of Ruby, it is
-    # possible that this will create errors in Ruby 2.3.0+.
-    - always
-    # `never` will enforce that the frozen string literal comment does not
-    # exist in a file.
-    - never
+  Enabled: false
